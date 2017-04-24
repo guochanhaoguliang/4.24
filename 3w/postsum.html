@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>求和</title>
+	<script type="text/javascript" src="jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var t1=$('#t1');
+			var t2=$('#t2');
+			var obtn=$('#button');
+			obtn.click(function(){
+				var num1 = t1.val();
+				var num2 = t2.val();
+				$.ajax({
+					url:'/add',
+					type:'post',
+					data:{
+						num:num1,
+						num1:num2
+					},
+					success:function(res){
+						var json = eval('('+res+')');
+						alert(json.sum);
+					},
+					error:function(){}
+				})
+			})
+		})
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="t1">
+	+
+	<input type="text" name="" id="t2">
+	<input type="button" name="" value="计算" id="button">
+</body>
+</html>

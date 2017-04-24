@@ -1,0 +1,98 @@
+    <!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>智能社--http://www.zhinengshe.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+    </style>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script>
+        $(function(){
+            var t1=$('#t1');
+            var t2=$('#t2');
+            var p1=$('#p1');
+            var p2=$('#p2');
+            var oBtn1=$('#btn1');
+            var oBtn2=$('#btn2');
+            //登录
+            oBtn1.click(function(){
+                var user=t1.val();
+                var pass=p1.val();
+                ///login?user=XXX&pass=XXX
+                $.ajax({
+                    url:'/login',
+                    data:{
+                        user:user,
+                        pass:pass
+                    },
+                    success:function(res){
+                        //{error:"0",msg:"XXX"}
+                        var json=eval('('+res+')');
+                        alert(json.msg);
+                    },
+                    error:function(){
+                        alert('请检查网络');
+                    }
+                });
+            });
+            //注册
+//            url: /register?user=XXX&pass=XXX
+//            return  {error:"0",msg:"XXX"}
+            oBtn2.click(function(){
+                var user=t2.val();
+                var pass=p2.val();
+
+                $.ajax({
+                    url:'/register',
+                    data:{
+                        user:user,
+                        pass:pass
+                    },
+                    error:function(){
+                        alert('请检查网络')
+                    },
+                    success:function(res){
+                        var json=eval('('+res+')');
+                        alert(json.msg);
+                    }
+                })
+            });
+        })
+    </script>
+</head>
+<body>
+    <div id="login">
+        <input type="text" name="" id="t1"/>
+        <input type="password" name="" id="p1"/>
+        <input type="button" value="登录" id="btn1"/>
+    </div>
+
+    <div id="register">
+        <input type="text" name="" id="t2"/>
+        <input type="password" name="" id="p2"/>
+        <input type="button" value="注册" id="btn2"/>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

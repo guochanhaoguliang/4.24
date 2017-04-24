@@ -1,0 +1,255 @@
+=============
+  2017-4-24
+=============
+数据库  存数据
+
+库 表 数据
+        字段
+        一条条数据
+数据库的客户端
+    navicat
+    phpmyadmin  http://localhost/phpmyadmin/
+sql语句
+    增
+        INSERT INTO 表名 VALUES (数据1,数据2...);
+            注：如果增加id这种自增的 写数字0
+    删
+        DELETE FROM 表名 WHERE 条件;
+            注：删除的时候必须后面跟where，要不然把整个表就都删了
+    改
+        UPDATE 表名 SET 字段名="新的值" WHERE 条件
+            注：修改的时候也要加条件，要不然把整个表某个字段全部改了
+    查
+        SELECT 字段 FROM 表名;
+            注：如果是多个字段可以用*
+
+----------------------------
+    例子：登录注册
+        登录  url：/login?user=XXX&pass=XXX
+             return  {error:"0",msg:"XXX"}
+        注册  url: /register?user=XXX&pass=XXX
+              return  {error:"0",msg:"XXX"}
+
+
+
+----------------
+arr.sort(function(){
+
+})
+回调函数：咱们只管用，不管什么时候去调用
+------------------
+性能优化
+   垃圾回收 最早是java GC
+
+   var a=12; 在内存中储存了一个a
+
+   底层语言： 申请变量
+        手动释放内存
+
+        如果不释放---内存泄漏---内存溢出
+   高级语言（js）
+        自动释放内存
+
+        垃圾需要释放---怎么评判是不是垃圾
+
+   变量-生命周期
+   作用域
+
+   全局变量 在哪里都能调用 生命周期非常长，知道浏览器关闭 占内存
+   局部变量 只能在函数内部调动 声明周期很短 函数调用完    不占内存
+   闭包 子函数可以调用父函数的局部变量,如果子函数得不到释放，整条作用域链上的局部变量都不会得到释放
+
+    oDiv.onmousedown=function(ev){
+        ........
+        document.onmousemove=function(){};
+        document.onmouseup=function(){
+            document.onmousemove=null;
+            document.onmouseup=null;
+        };
+    }
+-----------------
+稳定性
+维护性
+性能
+
+网络的性能
+    F12
+        network
+            name
+            status  http状态码
+                2打头的成功 304
+                3重定向
+                4是前端的问题
+                5,6后端问题
+            type
+                png
+                media 媒体资源
+
+            initiator 发起者
+            size
+            time
+                总时间
+            waterfall
+                queueing 等候的时间
+                stalled  卡的时间 浏览器相应的时间
+                    如果这个时间过长客户端不行
+                request sent 发送的时间
+                    这个过长：客户端的带宽不够，或者发送数据过大
+                waiting  等待后台的相应
+                    这个时间过长：后台代码处理慢，服务器配置有问题
+                content download 内容下载
+                    这个时间过长：服务器网络带宽不够，返回的数据过大
+
+
+    FF：YSlow
+        先ctrl+shift+a
+           基于fireBug
+           在下载YSlow
+
+    1.Minimize HTTP Requests 减少HTTP请求
+        合并文件 雪碧图
+    2、Use a Content Delivery Network 利用CDN技术
+        CDN 内容分发网络  必须有钱
+    3、Gzip Components Gzip压缩
+        减少了http请求的大小
+    4、Put Stylesheets at the Top 把CSS放顶部
+        为了更快渲染页面
+    5、Put Scripts at the Bottom 把JS放底部
+        js是阻塞加载
+        自己的代码一般放顶部，别人的代码放底部
+    6、Minify JavaScript and CSS 减小JS和CSS的体积
+        压缩
+    7、Avoid Redirects 避免重定向
+    8、Remove Duplicate Scripts 删除重复脚本
+    9、Reduce the Number of DOM Elements 减少DOM元素数量
+        减少DOM操作，能用变量就用变量
+    10、No 404s 不要出现404页面
+    11、Reduce Cookie Size 减小Cookie
+        每次请求都有cookie
+
+    尽量使用css3中的运动，减少重排
+执行的性能
+    1、少用定时器
+    2、尽量少操作DOM
+    3、多用变量（声明变量尽量都在最前面）
+    4、能用正则的就不用字符串方法
+    5、闭包（没用的子函数，释放掉）
+----------------------
+    斐波那契数列
+
+    1、1对
+    2、假设不死
+    3、2月长大，生一对兔子
+
+    1  1
+    2  1
+    3  2 一对老的 一对小的
+    4  3 一对老的 一对中的 一对小的
+    5  5 两队老的 一对中的 两队小的
+    6  8 三队老的 2对中的  3对小的
+    7  13  5对老的 3对中的 5对小的
+    8  21
+    9  34
+    10 55
+    11 89
+    12 144
+
+    一年以后有多少对兔子
+    三年以后有多少兔子
+
+    fn(36)
+
+    自己调用自己 递归
+        注：本身非常快
+        但是咱们重复的计算太多了
+
+作业：无限运动
+-------------------------------
+码云：个人站
+    1、创建项目 地址写好点
+    2、启动svn 在管理中
+    3、选择文件夹，checkout
+    4、个人站首页必须是叫index.html,而且放在根目录下
+    5、上传
+    6、服务-pages-启动
+    注：只能有一个个人站
+svn
+    集中式的代码管理工具
+    如果服务器是在内网，在家里没法工作
+    传输慢，已文件的形式传输
+    代码统一容易出现问题
+git
+    分布式代码管理工具
+    传输块，二进制传输方式
+    分支的概念
+
+    下载 https://git-scm.com/
+    安装 下一步
+    检测安装成功 任何地方右键
+        GUI 图形化界面（不用）
+        BASH  ctrl+加号 放大
+
+        linux
+            cd 进入文件夹 上一层 cd..
+            ls 查看该目录下的所有内容
+            touch a.txt 新建文件
+            rm a.txt 删除文件
+            clear  清屏
+
+        https://github.com/  社区
+
+    创建一个项目有两种方式：
+    1、创建一个不花勾（README.md）
+        0）创建一个README.md文件
+            echo "# 2017424" >> README.md
+        1)初始化本地仓库
+            git init
+        2）添加文件进入缓存区
+            git add 文件名
+            git add .
+        3) 从缓存区到本地仓库
+            git commit -m "XXX"
+        4)从本地仓库到远程仓库
+            git push
+            注：如果是第一次建立连接
+                git remote add origin XXX
+                git push -u origin master
+            要输入邮箱号，密码
+    2、创建一个画勾（README.md）
+        1）拷贝
+        2）找一个文件夹 git clone 复制的地址
+        3）在文件夹里写代码
+        4）git add .
+        5) git commit -m "XXX"
+        6) git push
+            输入邮箱 密码
+-----------------
+以后：
+    git add .
+    git commit -m "XXX"
+    git push
+--------------------
+1、问你是谁的时候
+    git config --global user.email "XXXXX"
+    git config --global user.name "XXXXX"
+2、传不上去 设置key
+    声明一个暗号（key）
+    ssh-keygen -t rsa -C '邮箱号'
+        一路回车
+        出现一堆符号 给你一个地址
+        一般在c--用户---administrator---.ssh--id_rsa.pub
+        id_rsa.pub用记事本打开（一定用记事本）
+        粘贴内容
+        去官网 setting--SSH and GPG keys
+        new SSH key
+        粘贴
+        完成
+
+
+
+
+
+
+
+
+
